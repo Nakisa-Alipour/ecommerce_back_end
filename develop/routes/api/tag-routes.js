@@ -44,12 +44,32 @@ router.post('/', (req, res) => {
 });
 
 
+// Update a tag's name by ID
 router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
+  Tag.update(req.body, {
+    where: { id: req.params.id },
+  })
+    .then((tagData) => {
+      if (tagData[0] === 0) {
+        return res.status(404).json({ error: 'Tag not found' });
+      }
+      res.json(tagData);
+    })
+    .catch((err) => handleErrors(res, err));
 });
 
+// Delete a tag by ID
 router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
+  Tag.destroy({
+    where: { id: req.params.id },
+  })
+    .then((tagData) => {
+      if (tagData === 0) {
+        return res.status(404).json({ error: 'Tag not found' });
+      }
+      res.status(204).end();
+    })
+    .catch((err) => handleErrors(res, err));
 });
 
 module.exports = router;
