@@ -1,11 +1,21 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
+// Error handling middleware
+const handleErrors = (res, err) => {
+  console.error(err);
+  res.status(500).json({ error: 'An unexpected error occurred' });
+};
+
 // The `/api/tags` endpoint
 
+// Get all tags
 router.get('/', (req, res) => {
-  // find all tags
-  // be sure to include its associated Product data
+  Tag.findAll({ include: [{ model: Product }, {model:ProductTag}] })
+    .then((tagData) => {
+      res.json(tagData);
+    })
+    .catch((err) => handleErrors(res, err));
 });
 
 router.get('/:id', (req, res) => {
