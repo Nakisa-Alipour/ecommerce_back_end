@@ -18,14 +18,31 @@ router.get('/', (req, res) => {
     .catch((err) => handleErrors(res, err));
 });
 
+// Get a single tag by ID
 router.get('/:id', (req, res) => {
-  // find a single tag by its `id`
-  // be sure to include its associated Product data
+  Tag.findOne({
+    where: { id: req.params.id },
+    include: [{ model: Product }],
+  })
+    .then((tagData) => {
+      if (!tagData) {
+        return res.status(404).json({ error: 'Tag not found' });
+      }
+      res.json(tagData);
+    })
+    .catch((err) => handleErrors(res, err));
 });
 
+
+// Create a new tag
 router.post('/', (req, res) => {
-  // create a new tag
+  Tag.create(req.body)
+    .then((tagData) => {
+      res.status(201).json(tagData);
+    })
+    .catch((err) => handleErrors(res, err));
 });
+
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
