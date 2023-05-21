@@ -1,18 +1,41 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
+// Error handling middleware
+const handleErrors = (res, err) => {
+  console.error(err);
+  res.status(500).json({ error: 'An unexpected error occurred' });
+};
+
 // The `/api/products` endpoint
 
 // get all products
 router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+  Product.findAll({
+    include: [{ model: Category }, { model: Tag }],
+  })
+    .then((products) => {
+      res.json(products);
+    })
+    .catch((err) => {
+      handleErrors(res, err);
+    });
 });
 
 // get one product
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  Product.findByPk(req.params.id, {
+    include: [{ model: Category }, { model: Tag }],
+  })
+    .then((product) => {
+      if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+      res.json(product);
+    })
+    .catch((err) => {
+      handleErrors(res, err);
+    });
 });
 
 // create new product
@@ -89,8 +112,21 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// delete product
 router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+  Product.findByPk(req.params.id)
+    .then((product) => {
+      if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+      return Product.destroy({ where: { id: req.params.id } });
+    })
+    .then(() => {
+      res.json({ message: 'Product deleted successfully' });
+    })
+    .catch((err) => {
+      handleErrors(res, err);
+    });
 });
 
 module.exports = router;
