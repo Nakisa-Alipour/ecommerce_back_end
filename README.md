@@ -50,19 +50,21 @@ To use this application, please follow these steps:
 Please refer to the walkthrough video 
 
 for **installation and usage**, please click on the icon below:
-
 [![play image](https://user-images.githubusercontent.com/124220654/232980789-98efdcfd-579f-4389-a10f-8822b54bbeaa.jpg)](https://clipchamp.com/watch/kaBeCnJkRcj)
 
-to see functionality of the application for **categories in Insomnia**, please click on the icon below:
 
+
+to see functionality of the application for **categories in Insomnia**, please click on the icon below:
 [![play image](https://user-images.githubusercontent.com/124220654/232980789-98efdcfd-579f-4389-a10f-8822b54bbeaa.jpg)](https://clipchamp.com/watch/91Otoq7anD5)
 
-to see functionality of the application for **products in Insomnia**, please click on the icon below:
 
+
+to see functionality of the application for **products in Insomnia**, please click on the icon below:
 [![play image](https://user-images.githubusercontent.com/124220654/232980789-98efdcfd-579f-4389-a10f-8822b54bbeaa.jpg)](https://clipchamp.com/watch/8RVNU1mbcuX)
 
-to see functionality of the application for **tags in Insomnia**, please click on the icon below:
 
+
+to see functionality of the application for **tags in Insomnia**, please click on the icon below:
 [![play image](https://user-images.githubusercontent.com/124220654/232980789-98efdcfd-579f-4389-a10f-8822b54bbeaa.jpg)](https://clipchamp.com/watch/wN8AYwVV8SQ)
 
 
