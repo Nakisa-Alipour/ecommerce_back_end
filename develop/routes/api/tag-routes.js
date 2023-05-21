@@ -11,7 +11,7 @@ const handleErrors = (res, err) => {
 
 // Get all tags
 router.get('/', (req, res) => {
-  Tag.findAll({ include: [{ model: Product }, {model:ProductTag}] })
+  Tag.findAll({ include: [{ model: Product }]})
     .then((tagData) => {
       res.json(tagData);
     })
